@@ -44,12 +44,12 @@
                             <FormItem label="用户名：" prop="userName" required>
                                 <Input v-model="addStaffData.userName" style="width: 300px;" placeholder="请输入用户名" />
                             </FormItem>
-                            <FormItem label="密码：" prop="pwd" required>
-                                <Input v-model="addStaffData.pwd" style="width: 300px;" placeholder="请输入密码" />
-                            </FormItem>
-                            <FormItem label="确认密码：" prop="pwdCheck" required>
-                                <Input v-model="addStaffData.pwdCheck" style="width: 300px;" placeholder="请再次确认密码" />
-                            </FormItem>
+                            <!--<FormItem label="密码：" prop="pwd" required>-->
+                                <!--<Input v-model="addStaffData.pwd" style="width: 300px;" placeholder="请输入密码" />-->
+                            <!--</FormItem>-->
+                            <!--<FormItem label="确认密码：" prop="pwdCheck" required>-->
+                                <!--<Input v-model="addStaffData.pwdCheck" style="width: 300px;" placeholder="请再次确认密码" />-->
+                            <!--</FormItem>-->
                             <FormItem label="手机号：" prop="phone" required>
                                 <Input v-model="addStaffData.phone" style="width: 300px;" placeholder="请输入手机号" />
                             </FormItem>
@@ -127,12 +127,12 @@ export default {
                 staffId: [
                     {required: true, message: '工号不能为空', trigger: 'blur'},
                 ],
-                pwd: [
-                    {validator: validatePass, trigger: 'blur'},
-                ],
-                pwdCheck: [
-                    {validator: validatePassCheck, trigger: 'blur' }
-                ],
+//                pwd: [
+//                    {validator: validatePass, trigger: 'blur'},
+//                ],
+//                pwdCheck: [
+//                    {validator: validatePassCheck, trigger: 'blur' }
+//                ],
                 phone: [
                     {required: true, message: '手机号不能为空', trigger: 'blur'},
                     // {pattern: '/^(14[7]|13[0-9]|15[0-9]|18[0-9]|17[0-9])\d{8}$/', message: '请输入正确的手机号', trigger: 'blur'}
@@ -217,6 +217,8 @@ export default {
                                 on: {
                                     'on-ok': () => {
                                         this.isDeleting = true;
+                                        console.log('on-ok')
+                                        console.log(params)
                                         this.del(params.row.id);
                                     }
                                 }
@@ -263,7 +265,7 @@ export default {
     },
     methods: {
         init () {
-            axios.get('http://localhost:3000/staff').then((res) => {
+            axios.get('http://localhost:3000/staff/query').then((res) => {
                 console.log(res.data);
                 if(res.data.status==1){
                     this.data = res.data.result.list;
@@ -272,9 +274,10 @@ export default {
                 console.log(err);
             })
         },
+      // 查询用户
         query () {
             axios({
-                    url: 'http://localhost:3000/staff',
+                    url: 'http://localhost:3000/staff/query',
                     params: this.queryData
                 })
                 .then((res) => {
@@ -287,6 +290,7 @@ export default {
                     console.log(err);
                 })
         },
+        // 弹出添加用户谈框
         add () {
             this.addInfoFlag = true;
         },
@@ -315,18 +319,20 @@ export default {
             this.currStaffData = this.data[index];
             this.index = index;
         },
+        // 删除操作
         del (id) {
-            axios.post('http://localhost:3000/staff/update', {id,show:0})
+            axios.post('http://localhost:3000/staff/del', {id})
                 .then((res) => {
                     console.log(res);
                     if(res.data.status==1)this.$Message.info(res.data.msg);
+                    this.init();
                 })
                 .catch((err) => {
                     console.log(err);
                 })
             this.isDeleting = false;
-            this.init();
         },
+      // 修改用户信息
         ok () {
             console.log(this.currStaffData);
             const {id,name,staffId} = this.currStaffData;
