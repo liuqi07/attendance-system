@@ -64,6 +64,15 @@
                         <Table :columns="columns2" :data="tableData2"></Table>
                     </Row>
                 </Card>
+                <Card>
+                    <p slot="title">
+                        <Icon type="clipboard"></Icon>
+                        已审批列表
+                    </p>
+                    <Row>
+                        <Table :columns="columns3" :data="tableData3"></Table>
+                    </Row>
+                </Card>
             </Col>
         </Row>
         <br>
@@ -72,6 +81,7 @@
 <script>
 // import staffData from './staffData.js';
 import axios from 'axios'
+import util from '../../libs/util'
 export default {
     data () {
         return {
@@ -99,7 +109,15 @@ export default {
                 },{
                     title: '申请时间',
                     key: 'applicationDate',
-                    width: 130,
+                    width: 140,
+                    align: 'center'
+                },{
+                    title: '请假日期',
+                    key: 'leaveDate',
+                    align: 'center'
+                },{
+                    title: '请假原因',
+                    key: 'leaveReason',
                     align: 'center'
                 },{
                     title: '审批进度',
@@ -167,7 +185,11 @@ export default {
                 }
             ],
             columns2: [
-              {
+                {
+                    type: 'selection',
+                    width: 40,
+                    align: 'center'
+                },{
                 title: '姓名',
                 key: 'name',
                 align: 'center'
@@ -203,7 +225,6 @@ export default {
                       },
                       on: {
                         'on-ok': () => {
-                          console.log(params)
                           this.agreeApplication(params.row['_id'], params.row.role);
                         }
                       }
@@ -227,7 +248,7 @@ export default {
                       },
                       on: {
                         'on-ok': () => {
-//                          this.refuseApplication();
+                          this.refuseApplication(params.row['_id'], params.row.role);
                         }
                       }
                     }, [
@@ -252,6 +273,35 @@ export default {
                 leaveReason: '修车'
               }
             ],
+            columns3: [
+                {
+                    title: '姓名',
+                    key: 'name',
+                    align: 'center'
+                },{
+                    title: '部门',
+                    key: 'department',
+                    align: 'center'
+                },{
+                    title: '申请时间',
+                    key: 'applicationDate',
+                    align: 'center',
+                    width: 140
+                },{
+                    title: '请假日期',
+                    key: 'leaveDate',
+                    align: 'center'
+                },{
+                    title: '请假原因',
+                    key: 'leaveReason',
+                    align: 'center'
+                },{
+                    title: '状态',
+                    key: 'action',
+                    alicn: 'center'
+                }
+            ],
+            tableData3: [],
             rules: {
                 leaveDateBegin: [
                     {required: true, type: 'date', message: '请选择开始时间', trigger: 'blur'}
@@ -283,6 +333,7 @@ export default {
 //      }
     },
     methods: {
+        // 初始化，表单数据回显
         init () {
             axios({
                   url: 'http://localhost:3000/staff/query',
@@ -294,7 +345,6 @@ export default {
                     let applicationData = {};
 //                    let {id, name, userName, department, immediateLeader, immediateLeaderId, leaveDateBegin, leaveDateEnd, successor, leaveReason, leaveType} = result;
                     
-                      console.log(this.applactionData)
                     applicationData.id = result.id;
                     applicationData.name = result.name;
                     applicationData.userName = result.userName;
@@ -303,6 +353,7 @@ export default {
                     applicationData.immediateLeader = result.immediateLeader;
                     applicationData.role = result.role;
                     this.applicationData = applicationData;
+                    console.log(applicationData)
                 }else{
                     alert(res.data.msg);
                 }
@@ -310,6 +361,31 @@ export default {
                 console.log(err);
             });
         },
+      // 提交申请
+      handleSubmit () {
+        let Count = 0;
+        for(var item in this.applicationData){
+          if(this.applicationData[item]) Count ++;
+        }
+        // 申请条件12个
+        if(Count === 12){
+          this.applicationData.applicationDate = util.formatDate('yyyy-MM-dd hh:mm:ss', new Date().getTime());
+          this.applicationData.type = 1; // type: 1 请假 2 调休
+          axios.post('http://localhost:3000/application/addApplication', this.applicationData)
+          .then((res) => {
+            if(res.data.status === 1){
+              this.$Message.success(res.data.msg);
+              this.queryRecord();
+            }
+          })
+          .catch((err) => {
+            console.log(err.message)
+          })
+        }else {
+          this.$Message.error('提交信息有误')
+        }
+    
+      },
       queryRecord () {
         // 查询申请记录
         axios.get('http://localhost:3000/application/queryRecord?id='+this.getCurrentStaffId()+'&type=1&pageSize=5')
@@ -317,10 +393,13 @@ export default {
           if(res.data.status == 1) {
             let result = res.data.result.list;
             result.forEach((item) => {
+              item.applicationDate = util.formatDate('MM-dd hh:mm', parseInt(item.applicationDate))
+              item.leaveDate = util.formatDate('MM-dd hh:mm', item.leaveDateBegin) + ' / ' + util.formatDate('MM-dd hh:mm', item.leaveDateEnd);
               switch(item.leaveProgress){
                 case 1: item.progress = '待主管审批'; break;
                 case 2: item.progress = '待总监审批'; break;
-                case 3: item.progress = '总监已批'; break;
+                case 3: item.progress = '审批通过'; break;
+                case 0: item.progress = '审批被拒绝'; break;
               }
             })
             this.tableData = res.data.result.list;
@@ -334,56 +413,60 @@ export default {
           axios.post('http://localhost:3000/application/queryNotApprove', {id: this.getCurrentStaffId(), role: this.getCurrentRole()})
             .then((res) => {
                 if(res.data.status===1){
+                    let result = res.data.result.list;
+                    result.forEach((item) => {
+                        item.applicationDate = util.formatDate('MM-dd hh:mm', parseInt(item.applicationDate))
+                        item.leaveDate = util.formatDate('MM-dd hh:mm', item.leaveDateBegin) + ' / ' + util.formatDate('MM-dd hh:mm', item.leaveDateEnd);
+                    })
 //                  this.$Message.success(res.data.msg)
-                  this.tableData2 = res.data.result.list;
+                  this.tableData2 = result;
+                }
+            })
+      },
+        // 查询名下已审批记录
+      queryApprove () {
+          axios.post('http://localhost:3000/application/queryApprove', {id: this.getCurrentStaffId(), role: this.getCurrentRole()})
+            .then((res) => {
+                if(res.data.status===1){
+                    let result = res.data.result.list;
+                    result.forEach((item) => {
+                        item.applicationDate = util.formatDate('MM-dd hh:mm', parseInt(item.applicationDate))
+                        item.leaveDate = util.formatDate('MM-dd hh:mm', item.leaveDateBegin) + ' / ' + util.formatDate('MM-dd hh:mm', item.leaveDateEnd);
+                        switch (item.leaveProgress) {
+                            case 0: item.action = '未通过'; break;
+                            case 3: item.action = '已通过'; break;
+                            default: item.action = '审批中'; break;
+                        }
+                    });
+                    this.tableData3 = result;
                 }
             })
       },
         // 获取当前登录用户id
         getCurrentStaffId () {
-            let id = 10;
+            let id = sessionStorage.getItem('id');
             return id;
         },
         getCurrentRole () {
-            let role = 2;
+            let role = sessionStorage.getItem('role');
             return role;
         },
         show (index) {
 
         },
+        // 删除申请
         del (_id) {
             axios.post('http://localhost:3000/application/delApplication', {_id})
                 .then((res) => {
                     if(res.data.status===1){
                       this.$Message.success(res.data.msg);
                       this.queryRecord();
+                    }else {
+                      this.$Message.error(res.data.msg);
                     }
                 })
         },
-        // 提交申请
-        handleSubmit () {
-            let Count = 0;
-            for(var item in this.applicationData){
-              if(this.applicationData[item]) Count ++;
-            }
-            if(Count === 12){
-              this.applicationData.applicationDate = new Date().getTime();
-              this.applicationData.type = 1;
-              axios.post('http://localhost:3000/application/addApplication', this.applicationData)
-              .then((res) => {
-                if(res.data.status === 1){
-                  this.$Message.success(res.data.msg);
-                  this.queryRecord();
-                }
-              })
-              .catch((err) => {
-                console.log(err.message)
-              })
-            }else {
-              this.$Message.error('提交信息有误')
-            }
-            
-        },
+        
         // 格式化时间
         leaveDateBeginChange (data) {
             this.applicationData.leaveDateBegin = data;
@@ -398,14 +481,27 @@ export default {
                     if(res.data.status===1){
                       this.$Message.success(res.data.msg);
                       this.queryNotApprove();
+                      this.queryApprove();
                     }
                 })
+        },
+        // 拒绝申请
+        refuseApplication (_id,id,role) {
+            axios.post('http://localhost:3000/application/approve', {_id, role: this.getCurrentRole(), action: 0})
+            .then((res) => {
+                if(res.data.status===1){
+                    this.$Message.success(res.data.msg);
+                    this.queryNotApprove();
+                    this.queryApprove();
+                }
+            })
         }
     },
     mounted () {
         this.init();
         this.queryRecord();
         this.queryNotApprove();
+        this.queryApprove();
     }
 }
 </script>

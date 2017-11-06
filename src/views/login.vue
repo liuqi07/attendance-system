@@ -39,6 +39,7 @@
 
 <script>
 import Cookies from 'js-cookie';
+import axios from 'axios';
 export default {
     data () {
         return {
@@ -68,11 +69,23 @@ export default {
                     } else {
                         Cookies.set('access', 1);
                     }
+                    sessionStorage.setItem('userName', this.form.userName);
+                    this.getCurrentStaffId(this.form.userName);
                     this.$router.push({
                         name: 'home_index'
                     });
                 }
             });
+        },
+        getCurrentStaffId(userName) {
+            axios.get('http://localhost:3000/staff/query?userName='+userName)
+                .then((res)=>{
+                    if(res.data.status===1){
+                        let {id, role} = res.data.result.list[0];
+                        sessionStorage.setItem('id', id);
+                        sessionStorage.setItem('role', role);
+                    }
+                })
         }
     }
 };
