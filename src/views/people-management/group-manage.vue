@@ -18,6 +18,7 @@
 </template>
 <script type="text/javascript">
     import axios from 'axios';
+    import config from '../../config/config';
     export default {
         data () {
             return {
@@ -89,7 +90,7 @@
             query () {
                 let params = this.queryGroupData.groupName?{groupName:this.queryGroupData.groupName}:{};
                 axios({
-                    url: 'http://10.0.133.78:8080/api/group/query',
+                    url: config.devBaseUrl+'/group/query',
                     params: params
                 })
                 .then((res) => {

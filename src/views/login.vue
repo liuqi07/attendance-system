@@ -40,6 +40,7 @@
 <script>
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import config from '../config/config';
 export default {
     data () {
         return {
@@ -79,7 +80,7 @@ export default {
         },
         // 获取用户信息
         getCurrentStaffId(userName) {
-            axios.get('http://10.0.133.78:8080/api/staff/query?userName='+userName)
+            axios.get(config.devBaseUrl+'/staff/query?userName='+userName)
                 .then((res)=>{
                     if(res.data.status===1){
                         let {id, role} = res.data.result.list[0];

@@ -20,6 +20,7 @@
 <script type="text/javascript">
     
     import axios from 'axios';
+    import config from '../../config/config'
     export default {
         data () {
             return {
@@ -92,7 +93,7 @@
             query () {
                 let params = this.queryRoleData.roleName?{roleName:this.queryRoleData.roleName}:{};
                 axios({
-                    url: 'http://10.0.133.78:8080/api/role/query',
+                    url: config.devBaseUrl+'/role/query',
                     params: params
                 })
                 .then((res) => {

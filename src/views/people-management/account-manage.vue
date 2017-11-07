@@ -78,6 +78,7 @@
 <script type="text/javascript">
 
 import axios from 'axios';
+import config from '../../config/config';
 import asyncValidator from 'async-validator';
 export default {
     data () {
@@ -242,7 +243,7 @@ export default {
     },
     methods: {
         init () {
-            axios.get('http://10.0.133.78:8080/api/staff/query').then((res) => {
+            axios.get(config.devBaseUrl + '/staff/query').then((res) => {
                 console.log(res.data);
                 if(res.data.status==1){
                     this.data = res.data.result.list;
@@ -254,7 +255,7 @@ export default {
         // 查询用户
         query () {
             axios({
-                    url: 'http://10.0.133.78:8080/api/staff/query',
+                    url: config.devBaseUrl + '/staff/query',
                     params: this.queryData
                 })
                 .then((res) => {
@@ -277,7 +278,7 @@ export default {
         handleSubmit (name) {
             this.$refs[name].validate((valid) => {
                 if (valid) {
-                    axios.post('http://10.0.133.78:8080/api/staff/add',this.addStaffData)
+                    axios.post(config.devBaseUrl + '/staff/add',this.addStaffData)
                         .then((res) => {
                             console.log(res)
                             if(res.data.status==1){
@@ -300,7 +301,7 @@ export default {
         },
         // 删除操作
         del (id) {
-            axios.post('http://10.0.133.78:8080/api/staff/del', {id})
+            axios.post(config.devBaseUrl+'/staff/del', {id})
                 .then((res) => {
                     console.log(res);
                     if(res.data.status==1)this.$Message.info(res.data.msg);
@@ -315,7 +316,7 @@ export default {
         ok () {
             console.log(this.currStaffData);
             const {id,name,staffId} = this.currStaffData;
-            axios.post('http://10.0.133.78:8080/api/staff/update', {id,name,staffId})
+            axios.post(config.devBaseUrl+'/staff/update', {id,name,staffId})
                 .then((res) => {
                     console.log(res);
                     this.$Message.info('点击了确定');
@@ -331,7 +332,7 @@ export default {
         },
         // 角色列表回显
         getRoleList () {
-            axios.get('http://10.0.133.78:8080/api/role/query')
+            axios.get(config.devBaseUrl+'/role/query')
             .then((res) => {
                 if(res.data.status===1){
 //                    let result = res.data.result.list;
@@ -343,7 +344,7 @@ export default {
         },
         // 组列表回显
         getGroupList () {
-            axios.get('http://10.0.133.78:8080/api/group/query')
+            axios.get(config.devBaseUrl+'/group/query')
             .then((res) => {
                 if(res.data.status===1){
                     this.groupList = res.data.result.list;

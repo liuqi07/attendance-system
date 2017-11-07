@@ -70,6 +70,7 @@
 <script>
     // import staffData from './staffData.js';
     import axios from 'axios'
+    import config from '../../config/config'
     import util from '../../libs/util'
     export default {
         data () {
@@ -265,7 +266,7 @@
             // 初始化，表单数据回显
             init () {
                 axios({
-                    url: 'http://10.0.133.78:8080/api/staff/query',
+                    url: config.devBaseUrl+'/staff/query',
                     params: {id: this.getCurrentStaffId()}
                 })
                 .then((res) => {
@@ -299,7 +300,7 @@
                 if(Count === 10){
                     this.applicationData.applicationDate = util.formatDate('yyyy-MM-dd hh:mm:ss', new Date().getTime());
                     this.applicationData.type = 2; // type: 1 请假 2 加班
-                    axios.post('http://10.0.133.78:8080/api/application/addOvertimeApplication', this.applicationData)
+                    axios.post(config.devBaseUrl+'/application/addOvertimeApplication', this.applicationData)
                     .then((res) => {
                         if(res.data.status === 1){
                             this.$Message.success(res.data.msg);
@@ -315,7 +316,7 @@
             },
             // 查询申请记录
             queryRecord() {
-                axios.get('http://10.0.133.78:8080/api/application/queryOvertimeRecord?id='+this.getCurrentStaffId()+'&type=2&pageSize=5')
+                axios.get(config.devBaseUrl+'/application/queryOvertimeRecord?id='+this.getCurrentStaffId()+'&type=2&pageSize=5')
                 .then((res) => {
                     if(res.data.status == 1) {
                         let result = res.data.result.list;
@@ -339,7 +340,7 @@
 
             },
             del (_id) {
-                axios.post('http://10.0.133.78:8080/api/application/delOvertimeApplication', {_id})
+                axios.post(config.devBaseUrl+'/application/delOvertimeApplication', {_id})
                 .then((res) => {
                     if(res.data.status===1){
                         this.$Message.success(res.data.msg);
@@ -351,7 +352,7 @@
             },
             // 查询待审批记录
             queryNotApprove () {
-                axios.post('http://10.0.133.78:8080/api/application/queryOvertimeNotApprove', {id: this.getCurrentStaffId(), role: this.getCurrentRole()})
+                axios.post(config.devBaseUrl+'/application/queryOvertimeNotApprove', {id: this.getCurrentStaffId(), role: this.getCurrentRole()})
                 .then((res) => {
                     if(res.data.status===1){
                         let result = res.data.result.list;
@@ -366,7 +367,7 @@
             },
             // 同意申请
             agreeApplication (_id,id,role) {
-                axios.post('http://10.0.133.78:8080/api/application/overtimeApprove', {_id, role: this.getCurrentRole(), action: 1})
+                axios.post(config.devBaseUrl+'/application/overtimeApprove', {_id, role: this.getCurrentRole(), action: 1})
                 .then((res) => {
                     if(res.data.status===1){
                         this.$Message.success(res.data.msg);
@@ -377,7 +378,7 @@
             },
             // 拒绝申请
             refuseApplication (_id,id,role) {
-                axios.post('http://10.0.133.78:8080/api/application/overtimeApprove', {_id, role: this.getCurrentRole(), action: 0})
+                axios.post(config.devBaseUrl+'/application/overtimeApprove', {_id, role: this.getCurrentRole(), action: 0})
                 .then((res) => {
                     if(res.data.status===1){
                         this.$Message.success(res.data.msg);
@@ -388,7 +389,7 @@
             },
             // 查询名下已审批记录
             queryApprove () {
-                axios.post('http://10.0.133.78:8080/api/application/queryOvertimeApprove', {id: this.getCurrentStaffId(), role: this.getCurrentRole()})
+                axios.post(config.devBaseUrl+'/application/queryOvertimeApprove', {id: this.getCurrentStaffId(), role: this.getCurrentRole()})
                 .then((res) => {
                     if(res.data.status===1){
                         let result = res.data.result.list;
