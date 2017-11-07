@@ -194,8 +194,6 @@ export default {
                                 on: {
                                     'on-ok': () => {
                                         this.isDeleting = true;
-                                        console.log('on-ok')
-                                        console.log(params)
                                         this.del(params.row.id);
                                     }
                                 }
