@@ -33,7 +33,7 @@
                         </Form>
                     </Modal>
                     <!-- 新增个人信息弹框 -->
-                    <Modal width="600" v-model="addInfoFlag" title="添加用户" @on-ok="handleSubmit('addStaffData')" @on-cancel="cancel">
+                    <Modal width="600" v-model="addInfoFlag" title="添加用户" @on-cancel="cancel">
                         <Form ref="addStaffData" :label-width="150" :model="addStaffData" :rules="addStaffRules">
                             <FormItem label="姓名：" prop="name" required>
                                 <Input v-model="addStaffData.name" style="width: 300px;" placeholder="请输入姓名" />
@@ -44,25 +44,25 @@
                             <FormItem label="用户名：" prop="userName" required>
                                 <Input v-model="addStaffData.userName" style="width: 300px;" placeholder="请输入用户名" />
                             </FormItem>
-                            <!--<FormItem label="密码：" prop="pwd" required>-->
-                                <!--<Input v-model="addStaffData.pwd" style="width: 300px;" placeholder="请输入密码" />-->
-                            <!--</FormItem>-->
-                            <!--<FormItem label="确认密码：" prop="pwdCheck" required>-->
-                                <!--<Input v-model="addStaffData.pwdCheck" style="width: 300px;" placeholder="请再次确认密码" />-->
-                            <!--</FormItem>-->
-                            <FormItem label="手机号：" prop="phone" required>
+                            <FormItem label="密码：" prop="pwd" required>
+                                <Input v-model="addStaffData.pwd" style="width: 300px;" placeholder="请输入密码" />
+                            </FormItem>
+                            <FormItem label="手机号：">
                                 <Input v-model="addStaffData.phone" style="width: 300px;" placeholder="请输入手机号" />
                             </FormItem>
-                            <FormItem label="邮箱：" prop="email" required>
+                            <FormItem label="邮箱：">
                                 <Input v-model="addStaffData.email" style="width: 300px;" placeholder="请输入邮箱" />
                             </FormItem>
-
-                            <!-- <FormItem label="职位：" prop="position">
-                                <Input v-model="addStaffData.position" type="text" style="width: 300px;" placeholder="请选择职位" />
+                            <FormItem label="角色：" required>
+                                <Select clearable style="width:200px" @on-change="onChangeRole" placeholder="请选择角色">
+                                    <Option v-for="item in roleList" :value="item.id" :key="item.id">{{ item.roleName }}</Option>
+                                </Select>
                             </FormItem>
-                            <FormItem label="部门：" prop="department">
-                                <Input v-model="addStaffData.department" type="text" style="width: 300px;" placeholder="请选择部门" />
-                            </FormItem> -->
+                            <FormItem label="部门：" required>
+                                <Select clearable style="width:200px" @on-change="onChangeGroup" placeholder="请选择部门">
+                                    <Option v-for="(item,i) in groupList" :value="item.groupName" :key="item.groupName">{{ item.groupName }}</Option>
+                                </Select>
+                            </FormItem>
                             <FormItem>
                                 <Button type="ghost" style="margin: 15px 10px 15px 50px;">取消</Button>
                                 <Button type="primary" @click="handleSubmit('addStaffData')" style="margin: 15px 0;">提交</Button>
@@ -127,20 +127,9 @@ export default {
                 staffId: [
                     {required: true, message: '工号不能为空', trigger: 'blur'},
                 ],
-//                pwd: [
+                pwd: [
 //                    {validator: validatePass, trigger: 'blur'},
-//                ],
-//                pwdCheck: [
-//                    {validator: validatePassCheck, trigger: 'blur' }
-//                ],
-                phone: [
-                    {required: true, message: '手机号不能为空', trigger: 'blur'},
-                    // {pattern: '/^(14[7]|13[0-9]|15[0-9]|18[0-9]|17[0-9])\d{8}$/', message: '请输入正确的手机号', trigger: 'blur'}
-                    // {type: 'number', message: '请输入正确的手机号', trigger: 'blur'}
-                ],
-                email: [
-                    {required: true, message: '邮箱不能为空', trgger: 'blur'},
-                    {type: 'email', message: '请输入正确的邮箱号', trigger: 'blur'}
+                    {required: true, message: '密码不能为空', trigger: 'blur'}
                 ]
             },
             columns: [
@@ -169,12 +158,6 @@ export default {
                     align: 'center',
                     width: 150,
                     sortable: true
-                },
-                {
-                    title: '职位',
-                    key: 'position',
-                    align: 'center',
-                    width: 150
                 },
                 {
                     title: '部门',
@@ -260,12 +243,14 @@ export default {
             showInfoFlag: false,
             addInfoFlag: false,
             index: null,
-            isDeleting: false
+            isDeleting: false,
+            roleList: [],
+            groupList: []
         }
     },
     methods: {
         init () {
-            axios.get('http://localhost:3000/staff/query').then((res) => {
+            axios.get('http://10.0.133.78:8080/api/staff/query').then((res) => {
                 console.log(res.data);
                 if(res.data.status==1){
                     this.data = res.data.result.list;
@@ -274,10 +259,10 @@ export default {
                 console.log(err);
             })
         },
-      // 查询用户
+        // 查询用户
         query () {
             axios({
-                    url: 'http://localhost:3000/staff/query',
+                    url: 'http://10.0.133.78:8080/api/staff/query',
                     params: this.queryData
                 })
                 .then((res) => {
@@ -293,12 +278,14 @@ export default {
         // 弹出添加用户谈框
         add () {
             this.addInfoFlag = true;
+            this.getRoleList();
+            this.getGroupList();
         },
         // 添加用户确定提交按钮
         handleSubmit (name) {
             this.$refs[name].validate((valid) => {
                 if (valid) {
-                    axios.post('http://localhost:3000/staff/add',this.addStaffData)
+                    axios.post('http://10.0.133.78:8080/api/staff/add',this.addStaffData)
                         .then((res) => {
                             console.log(res)
                             if(res.data.status==1){
@@ -321,7 +308,7 @@ export default {
         },
         // 删除操作
         del (id) {
-            axios.post('http://localhost:3000/staff/del', {id})
+            axios.post('http://10.0.133.78:8080/api/staff/del', {id})
                 .then((res) => {
                     console.log(res);
                     if(res.data.status==1)this.$Message.info(res.data.msg);
@@ -332,11 +319,11 @@ export default {
                 })
             this.isDeleting = false;
         },
-      // 修改用户信息
+        // 修改用户信息
         ok () {
             console.log(this.currStaffData);
             const {id,name,staffId} = this.currStaffData;
-            axios.post('http://localhost:3000/staff/update', {id,name,staffId})
+            axios.post('http://10.0.133.78:8080/api/staff/update', {id,name,staffId})
                 .then((res) => {
                     console.log(res);
                     this.$Message.info('点击了确定');
@@ -347,8 +334,45 @@ export default {
                 })
         },
         cancel () {
+            this.addInfoFlag = false;
             this.$Message.info('点击了取消');
         },
+        // 角色列表回显
+        getRoleList () {
+            axios.get('http://10.0.133.78:8080/api/role/query')
+            .then((res) => {
+                if(res.data.status===1){
+//                    let result = res.data.result.list;
+                    this.roleList = res.data.result.list;
+                }else{
+                    this.$Message.error(res.data.msg);
+                }
+            })
+        },
+        // 组列表回显
+        getGroupList () {
+            axios.get('http://10.0.133.78:8080/api/group/query')
+            .then((res) => {
+                if(res.data.status===1){
+                    this.groupList = res.data.result.list;
+                    
+                }else{
+                    this.$Message.error(res.data.msg);
+                }
+            })
+        },
+        onChangeRole (data) {
+            this.addStaffData.role = data;
+        },
+        onChangeGroup (data) {
+            this.addStaffData.department = data;
+            this.groupList.forEach((item) => {
+                if(item.groupName==data){
+                    this.addStaffData.immediateLeaderId = item.groupLeaderId;
+                    this.addStaffData.immediateLeader = item.groupLeader;
+                }
+            })
+        }
 
     },
     mounted () {

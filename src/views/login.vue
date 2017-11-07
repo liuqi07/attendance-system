@@ -77,8 +77,9 @@ export default {
                 }
             });
         },
+        // 获取用户信息
         getCurrentStaffId(userName) {
-            axios.get('http://localhost:3000/staff/query?userName='+userName)
+            axios.get('http://10.0.133.78:8080/api/staff/query?userName='+userName)
                 .then((res)=>{
                     if(res.data.status===1){
                         let {id, role} = res.data.result.list[0];

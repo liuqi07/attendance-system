@@ -3,7 +3,7 @@
     @import "../../styles/common.less";
 </style>
 <template>
-    <div class="home-main">
+    <!-- <div class="home-main">
         <Row>
             <Col span="8">
                 <Row>
@@ -170,7 +170,7 @@
                 </div>
             </Card>
         </Row>
-    </div>
+    </div> -->
 </template>
 
 <script>

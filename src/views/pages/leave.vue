@@ -336,7 +336,7 @@ export default {
         // 初始化，表单数据回显
         init () {
             axios({
-                  url: 'http://localhost:3000/staff/query',
+                  url: 'http://10.0.133.78:8080/api/staff/query',
                   params: {id: this.getCurrentStaffId()}
                 })
                 .then((res) => {
@@ -344,7 +344,7 @@ export default {
                     let result = res.data.result.list[0];
                     let applicationData = {};
 //                    let {id, name, userName, department, immediateLeader, immediateLeaderId, leaveDateBegin, leaveDateEnd, successor, leaveReason, leaveType} = result;
-                    
+
                     applicationData.id = result.id;
                     applicationData.name = result.name;
                     applicationData.userName = result.userName;
@@ -368,10 +368,11 @@ export default {
           if(this.applicationData[item]) Count ++;
         }
         // 申请条件12个
+          console.log(Count)
         if(Count === 12){
           this.applicationData.applicationDate = util.formatDate('yyyy-MM-dd hh:mm:ss', new Date().getTime());
           this.applicationData.type = 1; // type: 1 请假 2 调休
-          axios.post('http://localhost:3000/application/addApplication', this.applicationData)
+          axios.post('http://10.0.133.78:8080/api/application/addApplication', this.applicationData)
           .then((res) => {
             if(res.data.status === 1){
               this.$Message.success(res.data.msg);
@@ -384,11 +385,11 @@ export default {
         }else {
           this.$Message.error('提交信息有误')
         }
-    
+
       },
       queryRecord () {
         // 查询申请记录
-        axios.get('http://localhost:3000/application/queryRecord?id='+this.getCurrentStaffId()+'&type=1&pageSize=5')
+        axios.get('http://10.0.133.78:8080/api/application/queryRecord?id='+this.getCurrentStaffId()+'&type=1&pageSize=5')
         .then((res) => {
           if(res.data.status == 1) {
             let result = res.data.result.list;
@@ -410,7 +411,7 @@ export default {
       },
       // 查询待审批记录
       queryNotApprove () {
-          axios.post('http://localhost:3000/application/queryNotApprove', {id: this.getCurrentStaffId(), role: this.getCurrentRole()})
+          axios.post('http://10.0.133.78:8080/api/application/queryNotApprove', {id: this.getCurrentStaffId(), role: this.getCurrentRole()})
             .then((res) => {
                 if(res.data.status===1){
                     let result = res.data.result.list;
@@ -425,7 +426,7 @@ export default {
       },
         // 查询名下已审批记录
       queryApprove () {
-          axios.post('http://localhost:3000/application/queryApprove', {id: this.getCurrentStaffId(), role: this.getCurrentRole()})
+          axios.post('http://10.0.133.78:8080/api/application/queryApprove', {id: this.getCurrentStaffId(), role: this.getCurrentRole()})
             .then((res) => {
                 if(res.data.status===1){
                     let result = res.data.result.list;
@@ -456,7 +457,7 @@ export default {
         },
         // 删除申请
         del (_id) {
-            axios.post('http://localhost:3000/application/delApplication', {_id})
+            axios.post('http://10.0.133.78:8080/api/application/delApplication', {_id})
                 .then((res) => {
                     if(res.data.status===1){
                       this.$Message.success(res.data.msg);
@@ -466,7 +467,7 @@ export default {
                     }
                 })
         },
-        
+
         // 格式化时间
         leaveDateBeginChange (data) {
             this.applicationData.leaveDateBegin = data;
@@ -476,7 +477,7 @@ export default {
         },
         // 同意申请
         agreeApplication (_id,id,role) {
-            axios.post('http://localhost:3000/application/approve', {_id, role: this.getCurrentRole(), action: 1})
+            axios.post('http://10.0.133.78:8080/api/application/approve', {_id, role: this.getCurrentRole(), action: 1})
                 .then((res) => {
                     if(res.data.status===1){
                       this.$Message.success(res.data.msg);
@@ -487,7 +488,7 @@ export default {
         },
         // 拒绝申请
         refuseApplication (_id,id,role) {
-            axios.post('http://localhost:3000/application/approve', {_id, role: this.getCurrentRole(), action: 0})
+            axios.post('http://10.0.133.78:8080/api/application/approve', {_id, role: this.getCurrentRole(), action: 0})
             .then((res) => {
                 if(res.data.status===1){
                     this.$Message.success(res.data.msg);
