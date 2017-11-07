@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e17021e4-1294-4966-a4c2-63499eec7478" name="默认的" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/libs/test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/views/test/Test1.vue" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/views/test/table.vue" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/webpack.prod.config.js" afterPath="$PROJECT_DIR$/build/webpack.prod.config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/config.js" afterPath="$PROJECT_DIR$/src/config/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/libs/util.js" afterPath="$PROJECT_DIR$/src/libs/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/login.vue" afterPath="$PROJECT_DIR$/src/views/login.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/pages/leave.vue" afterPath="$PROJECT_DIR$/src/views/pages/leave.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/pages/overtime.vue" afterPath="$PROJECT_DIR$/src/views/pages/overtime.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/people-management/account-manage.vue" afterPath="$PROJECT_DIR$/src/views/people-management/account-manage.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/people-management/group-manage.vue" afterPath="$PROJECT_DIR$/src/views/people-management/group-manage.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/people-management/role-manage.vue" afterPath="$PROJECT_DIR$/src/views/people-management/role-manage.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -101,21 +89,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webpack.prod.config.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="webpack.prod.config.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build/webpack.prod.config.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="231">
-              <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="25" />
+              <caret line="14" column="46" lean-forward="false" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index_prod.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index_prod.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index_prod.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="36" column="20" lean-forward="true" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+            <state relative-caret-position="441">
+              <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -376,16 +364,15 @@
       <workItem from="1509714856610" duration="921000" />
       <workItem from="1509963714035" duration="18516000" />
       <workItem from="1510033706588" duration="17790000" />
-      <workItem from="1510059264175" duration="3255000" />
+      <workItem from="1510059264175" duration="4442000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68290000" />
+    <option name="totallyTimeSpent" value="69477000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="692" y="55" width="1696" height="1026" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21954161" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -394,7 +381,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293979" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21164614" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21164614" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -796,18 +783,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/webpack.prod.config.js">
+    <entry file="file://$PROJECT_DIR$/index_prod.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="25" />
+        <state relative-caret-position="441">
+          <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index_prod.html">
+    <entry file="file://$PROJECT_DIR$/build/webpack.prod.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="36" column="20" lean-forward="true" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+        <state relative-caret-position="231">
+          <caret line="14" column="46" lean-forward="false" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
           <folding />
         </state>
       </provider>
