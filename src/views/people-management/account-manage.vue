@@ -1,7 +1,7 @@
 <template>
     <div>
-        <Row type="flex" justify="start">
-            <Col Span="22">
+        <Row>
+            <Col>
                 <Card>
                     <Form ref="queryData" :model="queryData" :rules="ruleInline" inline>
                         <FormItem prop="userName">
@@ -142,39 +142,33 @@ export default {
                     title: '用户名',
                     key: 'userName',
                     align: 'center',
-                    width: 150,
                     editable: true
                 },
                 {
                     title: '姓名',
                     key: 'name',
                     align: 'center',
-                    width: 150,
                     editable: true
                 },
                 {
                     title: '工号',
                     key: 'staffId',
                     align: 'center',
-                    width: 150,
                     sortable: true
                 },
                 {
                     title: '部门',
                     key: 'department',
                     align: 'center',
-                    width: 150
                 },
                 {
                     title: '直属上级',
                     key: 'immediateLeader',
-                    align: 'center',
-                    width: 150
+                    align: 'center'
                 },
                 {
                     title: '操作',
                     key: 'action',
-                    width: 150,
                     align: 'center',
                     render: (h, params) => {
                         return h('div', [

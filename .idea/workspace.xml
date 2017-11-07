@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e17021e4-1294-4966-a4c2-63499eec7478" name="默认的" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/router.js" afterPath="$PROJECT_DIR$/src/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/home/home.vue" afterPath="$PROJECT_DIR$/src/views/home/home.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/login.vue" afterPath="$PROJECT_DIR$/src/views/login.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/main_components/sidebarMenu.vue" afterPath="$PROJECT_DIR$/src/views/main_components/sidebarMenu.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/pages/leave.vue" afterPath="$PROJECT_DIR$/src/views/pages/leave.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/pages/overtime.vue" afterPath="$PROJECT_DIR$/src/views/pages/overtime.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/people-management/account-manage.vue" afterPath="$PROJECT_DIR$/src/views/people-management/account-manage.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/people-management/group-manage.vue" afterPath="$PROJECT_DIR$/src/views/people-management/group-manage.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/people-management/role-manage.vue" afterPath="$PROJECT_DIR$/src/views/people-management/role-manage.vue" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,25 +17,25 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="account-manage.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="account-manage.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/views/people-management/account-manage.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1153">
-              <caret line="160" column="18" lean-forward="true" selection-start-line="160" selection-start-column="18" selection-end-line="160" selection-end-column="18" />
+            <state relative-caret-position="42">
+              <caret line="170" column="34" lean-forward="false" selection-start-line="170" selection-start-column="34" selection-end-line="170" selection-end-column="34" />
               <folding>
                 <element signature="n#style#0;n#Input#0;n#FormItem#3;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#Select#0;n#FormItem#6;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#Select#0;n#FormItem#7;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#4782#4808#0" expanded="true" />
-                <element signature="e#4942#5277#0" expanded="false" />
-                <element signature="e#5340#5602#0" expanded="false" />
-                <element signature="e#9894#10552#0" expanded="false" />
-                <element signature="e#10775#11099#0" expanded="false" />
-                <element signature="e#11822#12580#0" expanded="false" />
-                <element signature="e#12605#12737#0" expanded="false" />
-                <element signature="e#12772#13180#0" expanded="false" />
-                <element signature="e#13214#13677#0" expanded="false" />
-                <element signature="e#13697#13787#0" expanded="false" />
+                <element signature="e#4744#4770#0" expanded="true" />
+                <element signature="e#4904#5239#0" expanded="false" />
+                <element signature="e#5302#5564#0" expanded="false" />
+                <element signature="e#9665#10323#0" expanded="false" />
+                <element signature="e#10546#10870#0" expanded="false" />
+                <element signature="e#11593#12351#0" expanded="false" />
+                <element signature="e#12376#12508#0" expanded="false" />
+                <element signature="e#12543#12951#0" expanded="false" />
+                <element signature="e#12985#13448#0" expanded="false" />
+                <element signature="e#13468#13558#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -71,7 +63,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="leave.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="leave.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/pages/leave.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
@@ -129,9 +121,9 @@
         <option value="$PROJECT_DIR$/src/views/login.vue" />
         <option value="$PROJECT_DIR$/src/views/pages/overtime.vue" />
         <option value="$PROJECT_DIR$/src/views/people-management/role-manage.vue" />
-        <option value="$PROJECT_DIR$/src/views/people-management/account-manage.vue" />
         <option value="$PROJECT_DIR$/src/views/people-management/group-manage.vue" />
         <option value="$PROJECT_DIR$/src/views/pages/leave.vue" />
+        <option value="$PROJECT_DIR$/src/views/people-management/account-manage.vue" />
       </list>
     </option>
   </component>
@@ -381,12 +373,12 @@
       <updated>1509714853455</updated>
       <workItem from="1509714856610" duration="921000" />
       <workItem from="1509963714035" duration="18516000" />
-      <workItem from="1510033706588" duration="16232000" />
+      <workItem from="1510033706588" duration="16452000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63477000" />
+    <option name="totallyTimeSpent" value="63697000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -441,16 +433,16 @@
             <element signature="n#style#0;n#Input#0;n#FormItem#3;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#Select#0;n#FormItem#6;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#Select#0;n#FormItem#7;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#4782#4808#0" expanded="true" />
-            <element signature="e#4942#5277#0" expanded="false" />
-            <element signature="e#5340#5602#0" expanded="false" />
-            <element signature="e#9894#10552#0" expanded="false" />
-            <element signature="e#10775#11099#0" expanded="false" />
-            <element signature="e#11822#12580#0" expanded="false" />
-            <element signature="e#12605#12737#0" expanded="false" />
-            <element signature="e#12772#13180#0" expanded="false" />
-            <element signature="e#13214#13677#0" expanded="false" />
-            <element signature="e#13697#13787#0" expanded="false" />
+            <element signature="e#4744#4770#0" expanded="true" />
+            <element signature="e#4904#5239#0" expanded="false" />
+            <element signature="e#5302#5564#0" expanded="false" />
+            <element signature="e#9665#10323#0" expanded="false" />
+            <element signature="e#10546#10870#0" expanded="false" />
+            <element signature="e#11593#12351#0" expanded="false" />
+            <element signature="e#12376#12508#0" expanded="false" />
+            <element signature="e#12543#12951#0" expanded="false" />
+            <element signature="e#12985#13448#0" expanded="false" />
+            <element signature="e#13468#13558#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -521,16 +513,16 @@
             <element signature="n#style#0;n#Input#0;n#FormItem#3;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#Select#0;n#FormItem#6;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#Select#0;n#FormItem#7;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#4782#4808#0" expanded="true" />
-            <element signature="e#4942#5277#0" expanded="false" />
-            <element signature="e#5340#5602#0" expanded="false" />
-            <element signature="e#9894#10552#0" expanded="false" />
-            <element signature="e#10775#11099#0" expanded="false" />
-            <element signature="e#11822#12580#0" expanded="false" />
-            <element signature="e#12605#12737#0" expanded="false" />
-            <element signature="e#12772#13180#0" expanded="false" />
-            <element signature="e#13214#13677#0" expanded="false" />
-            <element signature="e#13697#13787#0" expanded="false" />
+            <element signature="e#4744#4770#0" expanded="true" />
+            <element signature="e#4904#5239#0" expanded="false" />
+            <element signature="e#5302#5564#0" expanded="false" />
+            <element signature="e#9665#10323#0" expanded="false" />
+            <element signature="e#10546#10870#0" expanded="false" />
+            <element signature="e#11593#12351#0" expanded="false" />
+            <element signature="e#12376#12508#0" expanded="false" />
+            <element signature="e#12543#12951#0" expanded="false" />
+            <element signature="e#12985#13448#0" expanded="false" />
+            <element signature="e#13468#13558#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -662,33 +654,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/people-management/account-manage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1153">
-          <caret line="160" column="18" lean-forward="true" selection-start-line="160" selection-start-column="18" selection-end-line="160" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#Input#0;n#FormItem#3;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#Select#0;n#FormItem#6;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#Select#0;n#FormItem#7;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#4782#4808#0" expanded="true" />
-            <element signature="e#4942#5277#0" expanded="false" />
-            <element signature="e#5340#5602#0" expanded="false" />
-            <element signature="e#9894#10552#0" expanded="false" />
-            <element signature="e#10775#11099#0" expanded="false" />
-            <element signature="e#11822#12580#0" expanded="false" />
-            <element signature="e#12605#12737#0" expanded="false" />
-            <element signature="e#12772#13180#0" expanded="false" />
-            <element signature="e#13214#13677#0" expanded="false" />
-            <element signature="e#13697#13787#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/pages/leave.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="377" column="50" lean-forward="true" selection-start-line="377" selection-start-column="50" selection-end-line="377" selection-end-column="50" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/people-management/account-manage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="170" column="34" lean-forward="false" selection-start-line="170" selection-start-column="34" selection-end-line="170" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#Input#0;n#FormItem#3;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Select#0;n#FormItem#6;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Select#0;n#FormItem#7;n#Form#0;n#Modal#1;n#Card#0;n#Row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#4744#4770#0" expanded="true" />
+            <element signature="e#4904#5239#0" expanded="false" />
+            <element signature="e#5302#5564#0" expanded="false" />
+            <element signature="e#9665#10323#0" expanded="false" />
+            <element signature="e#10546#10870#0" expanded="false" />
+            <element signature="e#11593#12351#0" expanded="false" />
+            <element signature="e#12376#12508#0" expanded="false" />
+            <element signature="e#12543#12951#0" expanded="false" />
+            <element signature="e#12985#13448#0" expanded="false" />
+            <element signature="e#13468#13558#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
