@@ -95,7 +95,7 @@ export const appRouter = [
         component: Main,
         children: [
             { path: 'leave', title: '请假申请', name: 'leave', component: resolve => { require(['./views/pages/leave.vue'], resolve)}},
-            { path: 'overtime', title: '调休申请', name: 'overtime', component: resolve => { require(['./views/pages/overtime.vue'], resolve)}}
+            { path: 'overtime', title: '加班申请', name: 'overtime', component: resolve => { require(['./views/pages/overtime.vue'], resolve)}}
         ]
     },
     // {

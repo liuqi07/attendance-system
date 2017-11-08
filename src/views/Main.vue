@@ -160,6 +160,9 @@
                     Cookies.remove('password');
                     Cookies.remove('hasGreet');
                     Cookies.remove('access');
+                    sessionStorage.removeItem("userName");
+                    sessionStorage.removeItem("id");
+                    sessionStorage.removeItem("role");
                     this.$Notice.close('greeting');
                     this.$store.commit('clearOpenedSubmenu');
                     // 回复默认样式
@@ -177,6 +180,7 @@
                     this.$router.push({
                         name: 'login'
                     });
+                    this.$Message.success('退出成功');
                 }
             },
             handleFullScreen () {

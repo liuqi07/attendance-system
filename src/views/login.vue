@@ -40,12 +40,13 @@
 <script>
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import md5 from 'md5';
 import config from '../config/config';
 export default {
     data () {
         return {
             form: {
-                userName: 'iview_admin',
+                userName: '',
                 password: ''
             },
             rules: {
@@ -63,21 +64,33 @@ export default {
             this.$refs.loginForm.validate((valid) => {
                 if (valid) {
                     Cookies.set('user', this.form.userName);
-                    Cookies.set('password', this.form.password);
+                    Cookies.set('password', md5(this.form.password));
                     this.$store.commit('setAvator', 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&fm=27&gp=0.jpg');
                     if (this.form.userName === 'iview_admin') {
                         Cookies.set('access', 0);
                     } else {
                         Cookies.set('access', 1);
                     }
+                    this.login();
+                }
+            });
+        },
+        // 验证用户登录
+        login() {
+            axios.post(config.devBaseUrl+'/staff/login', {userName: this.form.userName, pwd: md5(this.form.password)})
+            .then((res) => {
+                if(res.data.status===1){
                     sessionStorage.setItem('userName', this.form.userName);
                     this.getCurrentStaffId(this.form.userName);
                     this.$router.push({
                         name: 'home_index'
                     });
+                }else{
+                    this.$Message.error(res.data.msg);
                 }
-            });
+            })
         },
+        
         // 获取用户信息
         getCurrentStaffId(userName) {
             axios.get(config.devBaseUrl+'/staff/query?userName='+userName)
@@ -88,6 +101,10 @@ export default {
                         sessionStorage.setItem('role', role);
                     }
                 })
+        },
+        // md5 加密
+        md5 (pwd) {
+            return md5(pwd);
         }
     }
 };

@@ -45,13 +45,7 @@
                                 <Input v-model="addStaffData.userName" style="width: 300px;" placeholder="请输入用户名" />
                             </FormItem>
                             <FormItem label="密码：" prop="pwd" required>
-                                <Input v-model="addStaffData.pwd" style="width: 300px;" placeholder="请输入密码" />
-                            </FormItem>
-                            <FormItem label="手机号：">
-                                <Input v-model="addStaffData.phone" style="width: 300px;" placeholder="请输入手机号" />
-                            </FormItem>
-                            <FormItem label="邮箱：">
-                                <Input v-model="addStaffData.email" style="width: 300px;" placeholder="请输入邮箱" />
+                                <Input v-model="addStaffData.pwd" type="password" style="width: 300px;" placeholder="请输入密码" />
                             </FormItem>
                             <FormItem label="角色：" required>
                                 <Select clearable style="width:200px" @on-change="onChangeRole" placeholder="请选择角色">
@@ -80,6 +74,8 @@
 import axios from 'axios';
 import config from '../../config/config';
 import asyncValidator from 'async-validator';
+import md5 from 'md5';
+import util from '../../libs/util';
 export default {
     data () {
         const validatePass = (rule, value, callback) => {
@@ -244,8 +240,7 @@ export default {
     methods: {
         init () {
             axios.get(config.devBaseUrl + '/staff/query').then((res) => {
-                console.log(res.data);
-                if(res.data.status==1){
+                if(res.data.status===1){
                     this.data = res.data.result.list;
                 }
             }).catch((err) => {
@@ -278,6 +273,8 @@ export default {
         handleSubmit (name) {
             this.$refs[name].validate((valid) => {
                 if (valid) {
+//                    this.addStaffData.pwd = this.getmd5(this.addStaffData.pwd);
+                    this.addStaffData.pwd = this.md5(this.addStaffData.pwd);
                     axios.post(config.devBaseUrl + '/staff/add',this.addStaffData)
                         .then((res) => {
                             console.log(res)
@@ -365,6 +362,10 @@ export default {
                     this.addStaffData.immediateLeader = item.groupLeader;
                 }
             })
+        },
+        // md5 加密
+        md5 (pwd) {
+            return md5(pwd);
         }
 
     },

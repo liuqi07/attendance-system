@@ -247,11 +247,11 @@
                         width: 140
                     },{
                         title: '加班日期',
-                        key: 'leaveDate',
+                        key: 'overtimeDate',
                         align: 'center'
                     },{
                         title: '加班原因',
-                        key: 'leaveReason',
+                        key: 'overtimeReason',
                         align: 'center'
                     },{
                         title: '状态',
