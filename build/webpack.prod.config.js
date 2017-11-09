@@ -12,7 +12,7 @@ fs.open('./src/config/env.js', 'w', function(err, fd) {
 
 module.exports = merge(webpackBaseConfig, {
     output: {
-        publicPath: 'http://10.0.133.242:8080/public/',
+        publicPath: 'http://172.17.43.55:8080/dist/', // 静态资源存放的服务器地址
         filename: '[name].[hash].js',
         chunkFilename: '[name].[hash].chunk.js'
     },
